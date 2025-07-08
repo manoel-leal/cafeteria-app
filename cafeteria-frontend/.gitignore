@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/
+
+# Local environment variables
+.env
+.env.*.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Docker files
+docker-compose.override.yml
+*.local.yml
+
+# IDEs
+.vscode/
+.idea/
+
+# Test coverage
+coverage/
+*.lcov
+
+# NPM/Yarn lock files (comente se desejar versionar)
+# package-lock.json
+# yarn.lock
+
+# Cache
+.cache/
+tmp/
+temp/
+
+# Others
+*.swp
+*.swo

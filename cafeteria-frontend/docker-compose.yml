@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

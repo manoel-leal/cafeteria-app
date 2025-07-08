@@ -1,0 +1,32 @@
+# Node.js
+node_modules/
+package-lock.json
+yarn.lock
+
+# Cypress outputs
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+cypress/reports/
+*.html
+*.json
+
+# Local config
+.cypress.env.json
+.env
+.env.*
+
+# Logs & system files
+npm-debug.log*
+*.log
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Temporários
+*.swp
+*.tmp
+*.bak

@@ -1,0 +1,59 @@
+
+services:
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cafeteria
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  api:
+    build: .
+    container_name: cafeteria-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    networks:
+      - app-network
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_NAME: cafeteria
+      DB_PORT: 5432
+    entrypoint: ["sh", "/app/entrypoint.sh"]
+
+  api-test:
+    build: .
+    container_name: cafeteria-api-test
+    depends_on:
+      - db
+    networks:
+      - app-network
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_NAME: cafeteria
+      DB_PORT: 5432
+      NODE_ENV: test
+    entrypoint: ["sh", "-c", "npm install && npm test"]
+    volumes:
+      - .:/app
+    restart: "no"
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge
